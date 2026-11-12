@@ -1,30 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Shipping Calculator</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Shipping Calculator</h1>
-        <p>Calculate your package delivery cost</p>
 
-        <label for="weight">Package Weight (kg):</label>
-        <input type="number" id="weight" placeholder="Enter weight">
+        <header>
+            <h1>Shipping Calculator</h1>
+            <p>Calculate and manage your package deliveries</p>
+        </header>
 
-        <label for="distance">Delivery Distance (km):</label>
-        <input type="number" id="distance" placeholder="Enter distance">
+        <form id="shippingForm">
 
-        <button onclick="calculateShipping()">
-            Calculate Shipping
-        </button>
+            <!-- Sender Details -->
+            <section>
+                <h2>Sender's Details</h2>
 
-        <h2 id="result">Shipping Cost: ₹0</h2>
+                <label for="senderName">Sender Name</label>
+                <input type="text" id="senderName"
+                    placeholder="Enter sender name" required>
+
+                <label for="senderAddress">Sender Address</label>
+                <textarea id="senderAddress"
+                    placeholder="Enter sender address" required></textarea>
+
+                <label for="senderPhone">Sender Phone Number</label>
+                <input type="tel" id="senderPhone"
+                    placeholder="Enter 10-digit phone number"
+                    pattern="[0-9]{10}" maxlength="10" required>
+            </section>
+
+            <!-- Receiver Details -->
+            <section>
+                <h2>Receiver's Details</h2>
+
+                <label for="receiverName">Receiver Name</label>
+                <input type="text" id="receiverName"
+                    placeholder="Enter receiver name" required>
+
+                <label for="receiverAddress">Receiver Address</label>
+                <textarea id="receiverAddress"
+                    placeholder="Enter receiver address" required></textarea>
+
+                <label for="receiverPhone">Receiver Phone Number</label>
+                <input type="tel" id="receiverPhone"
+                    placeholder="Enter 10-digit phone number"
+                    pattern="[0-9]{10}" maxlength="10" required>
+            </section>
+
+            <!-- Package Details -->
+            <section>
+                <h2>Package Details</h2>
+
+                <label for="weight">Package Weight (kg)</label>
+                <input type="number" id="weight"
+                    placeholder="Enter package weight"
+                    min="0.01" step="0.01" required>
+
+                <label for="distance">Delivery Distance (km)</label>
+                <input type="number" id="distance"
+                    placeholder="Enter delivery distance"
+                    min="0.01" step="0.01" required>
+            </section>
+
+            <!-- Shipping Method -->
+            <section>
+                <h2>Shipping Method</h2>
+
+                <label for="shippingMethod">Select Shipping Method</label>
+
+                <select id="shippingMethod" required>
+                    <option value="Standard">Standard</option>
+                    <option value="Express">Express</option>
+                    <option value="Overnight">Overnight</option>
+                </select>
+            </section>
+
+            <!-- Buttons -->
+            <button type="submit" class="calculate-btn">
+                Calculate Shipping
+            </button>
+
+            <button type="reset" id="resetBtn" class="reset-btn">
+                Reset Form
+            </button>
+
+        </form>
+
+        <!-- Calculation Result -->
+        <div id="result" aria-live="polite"></div>
+
+        <!-- Saved Records -->
+        <section class="records-section">
+            <h2>Saved Shipment Records</h2>
+            <div id="savedRecords"></div>
+        </section>
+
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
